@@ -1,6 +1,9 @@
-import { expect, test } from "vite-plus/test";
-import { fn } from "../src/index.ts";
+import { expect, expectTypeOf, test } from "vite-plus/test";
+import objectKeys from "../src/index.ts";
 
-test("fn", () => {
-  expect(fn()).toBe("Hello, tsdown!");
+test("returns object keys", () => {
+  const keys = objectKeys({ id: "user_123", name: "Ada" });
+
+  expect(keys).toEqual(["id", "name"]);
+  expectTypeOf(keys).toEqualTypeOf<Array<"id" | "name">>();
 });
